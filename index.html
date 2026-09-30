@@ -1,0 +1,2049 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Calanthe Coffee & More - QR Menü</title>
+  <meta name="description" content="Calanthe Coffee & More QR Menü - Erkence Kahvaltı, All Day Lezzetler, Artisan Tatlılar ve Deneyim Barı">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Poppins:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #0c0a09;
+      --card-bg: #171311;
+      --gold-primary: #c5a880;
+      --gold-secondary: #a48256;
+      --brand-terracotta: #b55239;
+      --brand-orange: #f4a64e;
+      --text-dark: #2b241e;
+      --text-muted: #6b635b;
+      --border-light: rgba(181, 82, 57, 0.15);
+      --font-heading: 'Poppins', sans-serif;
+      --font-body: 'Open Sans', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: #faf8f5;
+      color: var(--text-dark);
+      font-family: var(--font-body);
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    /* =========================================
+       HERO COVERFLOW CAROUSEL (FULL 100VH / 100DVH SECTION)
+       ========================================= */
+    .coverflow-carousel-section {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      height: 100dvh;
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      padding: 24px 0 20px;
+      user-select: none;
+      background-color: var(--bg-dark);
+      color: #ffffff;
+      touch-action: pan-y;
+    }
+
+    .coverflow-ambience {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .coverflow-ambience-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.24) blur(36px);
+      transform: scale(1.18);
+      transition: opacity 800ms ease, filter 800ms ease;
+    }
+
+    .coverflow-ambience-overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(12,10,9,0.18) 0%, rgba(12,10,9,0.96) 100%);
+    }
+
+    .coverflow-container {
+      position: relative;
+      width: 100%;
+      max-width: 1240px;
+      height: 100%;
+      margin: 0 auto;
+      padding: 0 16px;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-evenly;
+    }
+
+    /* Brand Header within Hero */
+    .hero-brand-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 4px;
+    }
+
+    .hero-brand-title {
+      font-family: var(--font-heading);
+      font-size: 1.6rem;
+      font-weight: 900;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, #ffffff 0%, var(--gold-primary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1;
+    }
+
+    .coverflow-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .coverflow-eyebrow-line {
+      width: 32px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold-primary));
+    }
+    .coverflow-eyebrow-line.reverse {
+      background: linear-gradient(90deg, var(--gold-primary), transparent);
+    }
+
+    .coverflow-eyebrow-text {
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold-primary);
+      margin: 0;
+      text-align: center;
+    }
+
+    /* Stage */
+    .coverflow-stage {
+      position: relative;
+      width: 100%;
+      height: clamp(380px, 58vh, 520px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      perspective: 1400px;
+    }
+
+    .coverflow-card {
+      position: absolute;
+      width: clamp(260px, 25vw, 330px);
+      height: clamp(370px, 55vh, 490px);
+      border-radius: 20px;
+      overflow: hidden;
+      background-color: var(--card-bg);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      transform-origin: center center;
+      transition: all 700ms cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: transform, opacity, filter;
+    }
+
+    .coverflow-card-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      pointer-events: none;
+    }
+
+    .coverflow-card-vignette {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.1) 25%, rgba(0,0,0,0.68) 60%, rgba(0,0,0,0.98) 100%);
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    .coverflow-card-content {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      padding: clamp(14px, 2.5vh, 22px) clamp(12px, 2vw, 20px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-align: center;
+      z-index: 20;
+      transition: opacity 450ms ease, transform 450ms ease;
+    }
+
+    .coverflow-card-tag {
+      text-align: right;
+      width: 100%;
+    }
+
+    .coverflow-card-tag span {
+      display: inline-block;
+      font-size: clamp(0.68rem, 1vw, 0.74rem);
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: #ffffff;
+      background: rgba(0, 0, 0, 0.55);
+      padding: 3px 10px;
+      border-radius: 9999px;
+      border: 1px solid rgba(197, 168, 128, 0.45);
+      text-shadow: 0 2px 6px rgba(0,0,0,0.9);
+    }
+
+    .coverflow-card-body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      margin-top: auto;
+      padding-bottom: 2px;
+    }
+
+    .coverflow-card-title1 {
+      font-family: var(--font-heading);
+      font-size: clamp(1.25rem, 2.2vh, 1.6rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #ffffff;
+      margin: 0;
+      line-height: 1.1;
+      text-shadow: 0 3px 12px rgba(0,0,0,0.95);
+    }
+
+    .coverflow-card-title2 {
+      font-family: var(--font-heading);
+      font-size: clamp(0.85rem, 1.5vh, 1.05rem);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #f3f0ea;
+      line-height: 1.2;
+      text-shadow: 0 3px 10px rgba(0,0,0,0.9);
+    }
+
+    .coverflow-card-divider {
+      width: 32px;
+      height: 2px;
+      background-color: var(--gold-primary);
+      border-radius: 2px;
+      margin: 4px auto;
+      box-shadow: 0 0 8px rgba(197,168,128,0.7);
+    }
+
+    .coverflow-card-desc {
+      font-size: clamp(0.72rem, 1.2vh, 0.82rem);
+      font-style: italic;
+      color: rgba(255,255,255,0.92);
+      max-width: 270px;
+      margin: 0 0 8px;
+      line-height: 1.32;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.95);
+    }
+
+    .coverflow-card-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: clamp(6px, 1.1vh, 8px) clamp(16px, 2vw, 22px);
+      border-radius: 9999px;
+      background: linear-gradient(135deg, var(--gold-primary) 0%, var(--gold-secondary) 100%);
+      color: #110d0c;
+      font-size: clamp(0.68rem, 1vw, 0.72rem);
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.4), 0 0 15px rgba(197,168,128,0.3);
+      cursor: pointer;
+      transition: transform 200ms ease, box-shadow 200ms ease;
+    }
+
+    .coverflow-card-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(197,168,128,0.5);
+    }
+
+    .coverflow-arrow-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.6);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+      z-index: 40;
+      transition: all 250ms ease;
+    }
+
+    .coverflow-arrow-btn:hover {
+      background: rgba(197, 168, 128, 0.35);
+      border-color: var(--gold-primary);
+      transform: translateY(-50%) scale(1.08);
+    }
+
+    .coverflow-arrow-btn.prev { left: 16px; }
+    .coverflow-arrow-btn.next { right: 16px; }
+
+    /* Bottom Controller Area */
+    .hero-bottom-area {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+      z-index: 30;
+    }
+
+    .coverflow-dots {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+    }
+
+    .coverflow-dot {
+      height: 6px;
+      width: 6px;
+      border-radius: 9999px;
+      background-color: rgba(255,255,255,0.25);
+      border: none;
+      cursor: pointer;
+      transition: all 280ms ease;
+      padding: 0;
+    }
+
+    .coverflow-dot.active {
+      width: 26px;
+      background-color: var(--gold-primary);
+      box-shadow: 0 0 10px rgba(197,168,128,0.8);
+    }
+
+    /* Quick category jump bar inside hero */
+    .hero-categories-bar {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+      max-width: 900px;
+    }
+
+    .hero-cat-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 7px 14px;
+      border-radius: 9999px;
+      background: rgba(244, 166, 78, 0.12);
+      border: 1px solid rgba(181, 82, 57, 0.4);
+      color: #f7d5b8;
+      font-family: var(--font-heading);
+      font-size: clamp(0.72rem, 1.1vh, 0.82rem);
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .hero-cat-btn:hover {
+      background: var(--brand-terracotta);
+      color: #ffffff;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(181, 82, 57, 0.4);
+    }
+
+    /* Scroll Down Indicator */
+    .scroll-down-cue {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.5);
+      text-decoration: none;
+      transition: color 0.2s ease;
+      animation: bounce 2s infinite ease-in-out;
+    }
+    .scroll-down-cue:hover {
+      color: var(--gold-primary);
+    }
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(4px); }
+      60% { transform: translateY(2px); }
+    }
+
+    /* =========================================
+       MENU SECTIONS STYLING
+       ========================================= */
+    .menu-main-wrapper {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 50px 16px 80px;
+    }
+
+    .menu-category-section {
+      margin-bottom: 60px;
+      scroll-margin-top: 30px;
+    }
+
+    .category-header {
+      text-align: center;
+      margin-bottom: 28px;
+      position: relative;
+    }
+
+    .category-title {
+      font-family: var(--font-heading);
+      font-size: 2.1rem;
+      font-weight: 800;
+      color: var(--brand-terracotta);
+      letter-spacing: -0.01em;
+      margin-bottom: 6px;
+    }
+
+    .category-badge {
+      display: inline-block;
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--brand-terracotta);
+      background: rgba(181, 82, 57, 0.08);
+      border: 1px solid rgba(181, 82, 57, 0.2);
+      padding: 3px 12px;
+      border-radius: 9999px;
+    }
+
+    .category-notice {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 20px;
+    }
+
+    .menu-card {
+      background: #ffffff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 3px 16px rgba(0, 0, 0, 0.04);
+      border: 1px solid rgba(181, 82, 57, 0.1);
+      display: flex;
+      padding: 14px;
+      gap: 14px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .menu-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      border-color: rgba(181, 82, 57, 0.25);
+    }
+
+    .menu-card-thumb {
+      width: 86px;
+      height: 86px;
+      border-radius: 12px;
+      overflow: hidden;
+      flex-shrink: 0;
+      background: #f1ede8;
+    }
+
+    .menu-card-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .menu-card-details {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-width: 0;
+    }
+
+    .menu-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .menu-item-name {
+      font-family: var(--font-heading);
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      line-height: 1.25;
+      overflow-wrap: break-word;
+    }
+
+    .menu-item-price {
+      font-family: var(--font-heading);
+      font-size: 0.98rem;
+      font-weight: 800;
+      color: var(--brand-terracotta);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .menu-item-desc {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.35;
+      margin-bottom: 6px;
+      overflow-wrap: break-word;
+    }
+
+    .menu-item-meta {
+      font-size: 0.7rem;
+      color: #92877e;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Drinks Subsections */
+    .drinks-subgrid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      margin-top: 16px;
+    }
+
+    .drink-column {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 20px;
+      border: 1px solid rgba(181, 82, 57, 0.12);
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.03);
+    }
+
+    .drink-column-title {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--brand-terracotta);
+      margin-bottom: 14px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid rgba(181, 82, 57, 0.16);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .drink-list-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 8px 0;
+      border-bottom: 1px dashed rgba(0, 0, 0, 0.07);
+    }
+    .drink-list-item:last-child {
+      border-bottom: none;
+    }
+
+    .drink-item-info {
+      flex: 1;
+      padding-right: 12px;
+    }
+
+    .drink-name {
+      font-weight: 700;
+      font-size: 0.88rem;
+      color: var(--text-dark);
+    }
+
+    .drink-sub {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      line-height: 1.3;
+      margin-top: 2px;
+    }
+
+    .drink-price {
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 0.88rem;
+      color: var(--brand-terracotta);
+      white-space: nowrap;
+    }
+
+    /* Experience Bar Box */
+    .experience-bar-box {
+      background: linear-gradient(135deg, #1b1613 0%, #29201a 100%);
+      color: #ffffff;
+      border-radius: 18px;
+      padding: 28px 20px;
+      border: 1px solid rgba(197, 168, 128, 0.3);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      margin-top: 36px;
+    }
+
+    .exp-title {
+      font-family: var(--font-heading);
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: var(--gold-primary);
+      text-align: center;
+      margin-bottom: 18px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .exp-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .exp-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(197, 168, 128, 0.2);
+      border-radius: 12px;
+      padding: 16px;
+      transition: transform 0.2s ease;
+    }
+
+    .exp-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--gold-primary);
+    }
+
+    .exp-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+
+    .exp-bean-name {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 0.98rem;
+      color: #ffffff;
+    }
+
+    .exp-bean-price {
+      font-weight: 800;
+      color: var(--gold-primary);
+      font-size: 0.92rem;
+    }
+
+    .exp-notes {
+      font-size: 0.78rem;
+      color: #e5ded5;
+      line-height: 1.4;
+    }
+
+    /* Footer */
+    footer {
+      background: #110d0c;
+      color: #a49a90;
+      text-align: center;
+      padding: 40px 16px;
+      border-top: 1px solid rgba(197, 168, 128, 0.2);
+    }
+
+    .footer-logo {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 8px;
+      letter-spacing: 0.1em;
+    }
+
+    .footer-text {
+      font-size: 0.8rem;
+      max-width: 480px;
+      margin: 0 auto 16px;
+      line-height: 1.5;
+    }
+
+    /* =========================================
+       RESPONSIVE BREAKPOINTS (Mobile & Tablet)
+       ========================================= */
+    @media (max-width: 640px) {
+      .coverflow-carousel-section {
+        padding: 16px 0 14px;
+      }
+      .hero-brand-title {
+        font-size: 1.28rem;
+        letter-spacing: 0.14em;
+      }
+      .coverflow-eyebrow-text {
+        font-size: 0.68rem;
+        letter-spacing: 0.2em;
+      }
+      .coverflow-arrow-btn {
+        width: 36px;
+        height: 36px;
+      }
+      .coverflow-arrow-btn.prev { left: 6px; }
+      .coverflow-arrow-btn.next { right: 6px; }
+      .coverflow-arrow-btn svg { width: 18px; height: 18px; }
+
+      .hero-categories-bar {
+        gap: 6px;
+      }
+      .hero-cat-btn {
+        font-size: 0.72rem;
+        padding: 6px 11px;
+      }
+
+      .menu-main-wrapper {
+        padding: 36px 12px 60px;
+      }
+      .menu-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+      .menu-card {
+        padding: 12px;
+        gap: 12px;
+      }
+      .menu-card-thumb {
+        width: 78px;
+        height: 78px;
+      }
+      .drinks-subgrid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .drink-column {
+        padding: 16px 14px;
+      }
+      .experience-bar-box {
+        padding: 20px 14px;
+      }
+      .exp-title {
+        font-size: 1.35rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =========================================
+       HERO COVERFLOW CAROUSEL (FULL SCREEN 100VH)
+       ========================================= -->
+  <section id="hero" class="coverflow-carousel-section" onmouseenter="pauseCarousel()" onmouseleave="resumeCarousel()">
+    <!-- Ambient Background -->
+    <div class="coverflow-ambience">
+      <img id="carousel-ambience-img" class="coverflow-ambience-img" src="./images/egg_benedict.webp" alt="Calanthe ambience background">
+      <div class="coverflow-ambience-overlay"></div>
+    </div>
+
+    <div class="coverflow-container">
+      <!-- Brand Header -->
+      <div class="hero-brand-header">
+        <h1 class="hero-brand-title">CALANTHE</h1>
+        <div class="coverflow-eyebrow">
+          <span class="coverflow-eyebrow-line"></span>
+          <span class="coverflow-eyebrow-text">ÖNE ÇIKAN LEZZETLER</span>
+          <span class="coverflow-eyebrow-line reverse"></span>
+        </div>
+      </div>
+
+      <!-- 3D Coverflow Stage -->
+      <div class="coverflow-stage" id="coverflow-stage">
+        <!-- Cards injected dynamically -->
+      </div>
+
+      <!-- Navigation Arrows -->
+      <button class="coverflow-arrow-btn prev" onclick="prevSlide()" aria-label="Önceki Lezzet">
+        <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+
+      <button class="coverflow-arrow-btn next" onclick="nextSlide()" aria-label="Sonraki Lezzet">
+        <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+
+      <!-- Bottom Controller & Jump Navigation -->
+      <div class="hero-bottom-area">
+        <!-- Dots Indicator -->
+        <div class="coverflow-dots" id="coverflow-dots"></div>
+
+        <!-- Quick category jump buttons -->
+        <div class="hero-categories-bar">
+          <a href="#0" class="hero-cat-btn">🍳 Erkence (Kahvaltı)</a>
+          <a href="#1" class="hero-cat-btn">🥪 All Day</a>
+          <a href="#2" class="hero-cat-btn">🍰 Artisan Tatlılar</a>
+          <a href="#3" class="hero-cat-btn">☕ İçecek Menüsü</a>
+        </div>
+
+        <!-- Scroll down cue -->
+        <a href="#0" class="scroll-down-cue">
+          <span>Menüyü Keşfet</span>
+          <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================
+       MAIN MENU CONTENT (FROM CALANTHEQR)
+       ========================================= -->
+  <main class="menu-main-wrapper">
+
+    <!-- 1. ERKENCE -->
+    <section id="0" class="menu-category-section">
+      <div class="category-header">
+        <h2 class="category-title">Erkence</h2>
+        <span class="category-badge">Kahvaltı & Brunch</span>
+        <p class="category-notice">Erkence servislerimiz saat 10:00 - 15:00 arasında yapılmaktadır.</p>
+      </div>
+
+      <div class="menu-grid">
+        <!-- Egg Benedict -->
+        <article class="menu-card">
+          <div class="menu-card-thumb">
+            <img src="./images/egg_benedict.webp" alt="Egg Benedict" loading="lazy">
+          </div>
+          <div class="menu-card-details">
+            <div>
+              <div class="menu-card-top">
+                <h3 class="menu-item-name">Egg Benedict</h3>
+                <span class="menu-item-price">430 TL</span>
+              </div>
+              <p class="menu-item-desc">Poşe Yumurta, Füme Antrikot, Hollandez Sos, Ekşi Mayalı Ekmek, Avokado Sos, Parmesan Peyniri, Yeşillik Mix, Patates Bravas ile servis edilir.</p>
+            </div>
+            <div class="menu-item-meta">
+              <span>710 kcal</span> • <span>Alerjen: 1, 3, 4</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Pişi Hamurunda Poşe Yumurta -->
+        <article class="menu-card">
+          <div class="menu-card-thumb">
+            <img src="https://calantheqrmenu.com/_assets/media/5f59394406192fc44cfad0278b55c41d.jpg" alt="Pişi Hamurunda Poşe Yumurta" loading="lazy">
+          </div>
+          <div class="menu-card-details">
+            <div>
+              <div class="menu-card-top">
+                <h3 class="menu-item-name">Pişi Hamurunda Poşe Yumurta</h3>
+                <span class="menu-item-price">430 TL</span>
+              </div>
+              <p class="menu-item-desc">Pişi, Poşe Yumurta, Yoğurt, Sotelenmiş Ispanak, Dana Füme Et, Toz Paprika Biber ile servis edilir.</p>
+            </div>
+            <div class="menu-item-meta">
+              <span>650 kcal</span> • <span>Alerjen: 1, 3, 4</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Croque Madame -->
+        <article class="menu-card">
+          <div class="menu-card-thumb">
+            <img src="https://calantheqrmenu.com/_assets/media/0e900826ca94e39160ac5029008ea7e2.jpg" alt="Croque Madame" loading="lazy">
+          </div>
+          <div class="menu-card-details">
+            <div>
+              <div class="menu-card-top">
+                <h3 class="menu-item-name">Croque Madame</h3>
+                <span class="menu-item-price">400 TL</span>
+              </div>
+              <p class="menu-item-desc">Ekşi Mayalı Ekmek, Füme Antrikot, Göz Yumurta, Beşamel Sos, Kaşar Peynir, Mozzarella ile servis edilir.</p>
+            </div>
+            <div class="menu-item-meta">
+              <span>740 kcal</span> • <span>Alerjen: 1, 3, 4</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- French Toast -->
+        <article class="menu-card">
+          <div class="menu-card-thumb">
+            <img src="https://calantheqrmenu.com/_assets/media/38e74d7469394e2f1579d373d5ba777d.jpg" alt="French Toast" loading="lazy">
+          </div>
+          <div class="menu-card-details">
+            <div>
+              <div class="menu-card-top">
+                <h3 class="menu-item-name">French Toast</h3>
+                <span class="menu-item-price">380 TL</span>
+              </div>
+              <p class="menu-item-desc">Brioche Tost Ekmeği, Orman Meyveli Sos, Çilek, Muz, Mascarpone Kreması, Pudra Şekeri ile servis edilir.</p>
+            </div>
+            <div class="menu-item-meta">
+              <span>650 kcal</span> • <span>Alerjen: 1, 3, 4</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Meyveli Granola Bowl -->
+        <article class="menu-card">
+          <div class="menu-card-thumb">
+            <img src="https://calantheqrmenu.com/_assets/media/599bfe56d218d036998386cebf050f6a.jpg" alt="Meyveli Granola Bowl" loading="lazy">
+          </div>
+          <div class="menu-card-details">
+            <div>
+              <div class="menu-card-top">
+                <h3 class="menu-item-name">Meyveli Granola Bowl</h3>
+                <span class="menu-item-price">310 TL</span>
+              </div>
+              <p class="menu-item-desc">Çilek, Muz, Yaban Mersini, Bal, Kavrulmuş Yulaf Karışımı, Süzme Yoğurt veya Süt ve isteğe göre Fıstık ezmesi ile servis edilir.</p>
+            </div>
+            <div class="menu-item-meta">
+              <span>450 kcal</span> • <span>Alerjen: 1, 4, 11</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Kookoo Caohoo -->
+        <article class="menu-card">
+          <div class="menu-card-thumb">
+            <img src="https://calantheqrmenu.com/_assets/media/a9f3763bb7a135b0f54f7fe51a80208a.jpg" alt="Kookoo Caohoo" loading="lazy">
+          </div>
+          <div class="menu-card-details">
+            <div>
+              <div class="menu-card-top">
+                <h3 class="menu-item-name">Kookoo Caohoo</h3>
+                <span class="menu-item-price">400 TL</span>
+              </div>
+              <p class="menu-item-desc">Duxelles Mantar, Röşti Patates, Poşe Yumurta, Yeşil Aromatik Yağ, Ekşi Mayalı Ekmek, Parmesan Peyniri ile servis edilir.</p>
+            </div>
+            <div class="menu-item-meta">
+              <span>640 kcal</span> • <span>Alerjen: 1, 3, 4</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Brunch Tabağı -->
+        <article class="menu-card">
+          <div class="menu-card-thumb">
+            <img src="https://calantheqrmenu.com/_assets/media/b3639f862556497d362b37b281eed55a.jpg" alt="Brunch Tabağı" loading="lazy">
+          </div>
+          <div class="menu-card-details">
+            <div>
+              <div class="menu-card-top">
+                <h3 class="menu-item-name">Brunch Tabağı</h3>
+                <span class="menu-item-price">490 TL</span>
+              </div>
+              <p class="menu-item-desc">Çırpılmış Yumurta, Ekşi Mayalı Ekmek, Avokado Sos, Parmesan Peyniri, Yeşillik Mix, Mantar, Sosis, Patates Bravas ile servis edilir.</p>
+            </div>
+            <div class="menu-item-meta">
+              <span>720 kcal</span> • <span>Alerjen: 1, 3, 4</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Akdeniz Kahvaltı -->
+        <article class="menu-card">
+          <div class="menu-card-thumb">
+            <img src="https://calantheqrmenu.com/_assets/media/61a4bcfb18bb7d306f3f2c54c543354b.jpg" alt="Akdeniz Kahvaltı" loading="lazy">
+          </div>
+          <div class="menu-card-details">
+            <div>
+              <div class="menu-card-top">
+                <h3 class="menu-item-name">Akdeniz Kahvaltı</h3>
+                <span class="menu-item-price">380 TL</span>
+              </div>
+              <p class="menu-item-desc">Ekşi Mayalı Ekmek, 1 Göz Yumurta, Roka, Avokado, Hellim, Domates, Zeytin. (İlave Göz Yumurta +50 TL)</p>
+            </div>
+            <div class="menu-item-meta">
+              <span>550 kcal</span> • <span>Alerjen: 1, 3, 4</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Tornado Omlet -->
+        <article class="menu-card">
+          <div class="menu-card-thumb">
+            <img src="https://calantheqrmenu.com/_assets/media/11a0c9682184f5d711ad90fde7785242.png" alt="Tornado Omlet" loading="lazy">
+          </div>
+          <div class="menu-card-details">
+            <div>
+              <div class="menu-card-top">
+                <h3 class="menu-item-name">Tornado Omlet</h3>
+                <span class="menu-item-price">320 TL</span>
+              </div>
+              <p class="menu-item-desc">Çırpılmış Yumurta, Ekşi Mayalı Ekmek, Roka. (Biberli / Sucuklu +80 TL / Şefe Bıraktım)</p>
+            </div>
+            <div class="menu-item-meta">
+              <span>430-520 kcal</span> • <span>Alerjen: 1, 3</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Geleneksel Sıcak Kahvaltı -->
+        <article class="menu-card">
+          <div class="menu-card-thumb">
+            <img src="https://calantheqrmenu.com/_assets/media/2c494a9300ca8c3e6432a942d4522529.png" alt="Geleneksel Sıcak Kahvaltı" loading="lazy">
+          </div>
+          <div class="menu-card-details">
+            <div>
+              <div class="menu-card-top">
+                <h3 class="menu-item-name">Geleneksel Sıcak Kahvaltı</h3>
+                <span class="menu-item-price">490 TL</span>
+              </div>
+              <p class="menu-item-desc">Sucuk, Izgara Mantar, Izgara Biber, Hellim, Lutenitsa Sos, 1 Göz Yumurta, Patates Bravas, Simit ile servis edilir.</p>
+            </div>
+            <div class="menu-item-meta">
+              <span>790 kcal</span> • <span>Alerjen: 1, 3, 4, 14</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 2. ALL DAY -->
+    <section id="1" class="menu-category-section">
+      <div class="category-header">
+        <h2 class="category-title">All Day</h2>
+        <span class="category-badge">Sandviçler, Bowls & Sıcak Lezzetler</span>
+        <p class="category-notice">All Day servislerimiz saat 10:00 - 22:00 arasında yapılmaktadır.</p>
+      </div>
+
+      <div class="menu-grid">
+        <!-- Katsu-Sando Sandviç -->
+        <article class="menu-card">
+          <div class="menu-card-thumb">
+            <img src="./images/katsu_sando.webp" alt="Katsu-Sando Sandviç" loading="lazy">
+          </div>
+          <div class="menu-card-details">
+            <div>
+              <div class="menu-card-top">
+                <h3 class="menu-item-name">Katsu-Sando Sandviç</h3>
+                <span class="menu-item-price">400 TL</span>
+              </div>
+              <p class="menu-item-desc">Panelenmiş Tavuk, Brioche Tost Ekmeği, Alman Tipi Turşu, Patates Bravas, Coleslaw, Tenkatsu Sos ile servis edilir.</p>
+            </div>
+            <div class="menu-item-meta">
+              <span>650 kcal</span> • <span>Alerjen: 1, 3, 4</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Tavuklu Mac & Cheese -->
+        <article class="menu-card">
+          <div class="menu-card-thumb">
+            <img src="https://calantheqrmenu.com/_assets/media/7f0f723b60020f99e1629f6838631db2.jpg" alt="Tavuklu Mac & Cheese" loading="lazy">
+          </div>
+          <div class="menu-card-details">
+            <div>
+              <div class="menu-card-top">
+                <h3 class="menu-item-name">Tavuklu Mac & Cheese</h3>
+                <span class="menu-item-price">440 TL</span>
+              </div>
+              <p class="menu-item-desc">Mac & Cheese ve Panelenmiş Tavuk ile servis edilir.</p>
+            </div>
+            <div class="menu-item-meta">
+              <span>620 kcal</span> • <span>Alerjen: 1, 3, 4</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Sloppy Joe Sandviç -->
+        <article class="menu-card">
+          <div class="menu-card-thumb">
+            <img src="https://calantheqrmenu.com/_assets/media/2188b25d5ca67d69c870ba52399aafa1.jpg" alt="Sloppy Joe Sandviç" loading="lazy">
+          </div>
+          <div class="menu-card-details">
+            <div>
+              <div class="menu-card-top">
+                <h3 class="menu-item-name">Sloppy Joe Sandviç</h3>
+                <span class="menu-item-price">450 TL</span>
+              </div>
+              <p class="menu-item-desc">Kavrulmuş Dana Kıyma, Füme Antrikot, Cheddar Peyniri, Alman Tipi Turşu, Yeşillik Mix, Sriracha Sos ile servis edilir.</p>
+            </div>
+            <div class="menu-item-meta">
+              <span>650 kcal</span> • <span>Alerjen: 1, 3, 4</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Big Mac Wrap -->
+        <article class="menu-card">
+          <div class="menu-card-thumb">
+            <img src="https://calantheqrmenu.com/_assets/media/d40cee1f1141e64886e87b90abd0c1d7.jpg" alt="Big Mac Wrap" loading="lazy">
+          </div>
+          <div class="menu-card-details">
+            <div>
+              <div class="menu-card-top">
+                <h3 class="menu-item-name">Big Mac Wrap</h3>
+                <span class="menu-item-price">470 TL</span>
+              </div>
+              <p class="menu-item-desc">Kavrulmuş Dana Kıyma, Cheddar Peyniri, Alman Tipi Turşu, Iceberg, Calanthe sos.</p>
+            </div>
+            <div class="menu-item-meta">
+              <span>720 kcal</span> • <span>Alerjen: 1, 3, 4</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Şinitzel -->
+        <article class="menu-card">
+          <div class="menu-card-thumb">
+            <img src="https://calantheqrmenu.com/_assets/media/5a6d977eabd5dd6aa01232d8ae2cf211.png" alt="Şinitzel" loading="lazy">
+          </div>
+          <div class="menu-card-details">
+            <div>
+              <div class="menu-card-top">
+                <h3 class="menu-item-name">Şinitzel</h3>
+                <span class="menu-item-price">450 TL</span>
+              </div>
+              <p class="menu-item-desc">Panelenmiş Tavuk Bonfile, Haşlanmış Patates, Turşu, Maydanoz Dereotu Mix, Karamelize Soğan, Hardal, Kapari, Mayonez, Lime ve Baharatlı Tereyağı.</p>
+            </div>
+            <div class="menu-item-meta">
+              <span>620 kcal</span> • <span>Alerjen: 1, 3, 4, 6</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Calanthe Tost -->
+        <article class="menu-card">
+          <div class="menu-card-thumb">
+            <img src="https://calantheqrmenu.com/_assets/media/185c91707942e57475f37685bbe55019.jpg" alt="Calanthe Tost" loading="lazy">
+          </div>
+          <div class="menu-card-details">
+            <div>
+              <div class="menu-card-top">
+                <h3 class="menu-item-name">Calanthe Tost</h3>
+                <span class="menu-item-price">330 TL</span>
+              </div>
+              <p class="menu-item-desc">Ekşi Mayalı Ekmek, Pesto Sos, Parmesan, Domates, Mozzarella Peynir ve Yeşillik Mix ile servis edilir.</p>
+            </div>
+            <div class="menu-item-meta">
+              <span>490 kcal</span> • <span>Alerjen: 1, 4, 11</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Lazanya -->
+        <article class="menu-card">
+          <div class="menu-card-thumb">
+            <img src="https://calantheqrmenu.com/_assets/media/12256999c3793ff91324e3fb76b19eee.jpg" alt="Lazanya" loading="lazy">
+          </div>
+          <div class="menu-card-details">
+            <div>
+              <div class="menu-card-top">
+                <h3 class="menu-item-name">Lazanya</h3>
+                <span class="menu-item-price">450 TL</span>
+              </div>
+              <p class="menu-item-desc">Kıyma, Mozzarella, Pişmiş Kokteyl Domates, Beşamel Sos, Üzerinde Pesto Sos ile servis edilir.</p>
+            </div>
+            <div class="menu-item-meta">
+              <span>630 kcal</span> • <span>Alerjen: 1, 3, 4</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Sanayi Tost -->
+        <article class="menu-card">
+          <div class="menu-card-thumb">
+            <img src="https://calantheqrmenu.com/_assets/media/7fa42d4569adb2d3575b350ac848df0b.jpg" alt="Sanayi Tost" loading="lazy">
+          </div>
+          <div class="menu-card-details">
+            <div>
+              <div class="menu-card-top">
+                <h3 class="menu-item-name">Sanayi Tost</h3>
+                <span class="menu-item-price">360 TL</span>
+              </div>
+              <p class="menu-item-desc">Kavrulmuş Domates Salçası, Mozzarella, Kasap Sucuk ile servis edilir.</p>
+            </div>
+            <div class="menu-item-meta">
+              <span>620 kcal</span> • <span>Alerjen: 1, 4</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Poke Bowl -->
+        <article class="menu-card">
+          <div class="menu-card-thumb">
+            <img src="./images/salmon_poke_bowl.webp" alt="Poke Bowl" loading="lazy">
+          </div>
+          <div class="menu-card-details">
+            <div>
+              <div class="menu-card-top">
+                <h3 class="menu-item-name">Poke Bowl</h3>
+                <span class="menu-item-price">530 TL</span>
+              </div>
+              <p class="menu-item-desc">Izgara Somon, Avokado, Kinoa, Baby Turp, Havuç, Edamame, Susam, Yeşillik Mix ile servis edilir.</p>
+            </div>
+            <div class="menu-item-meta">
+              <span>680 kcal</span> • <span>Alerjen: 5, 6, 8, 14</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Köfteli Bowl -->
+        <article class="menu-card">
+          <div class="menu-card-thumb">
+            <img src="https://calantheqrmenu.com/_assets/media/64e491a66fcdb4224d0af4365d21e1ef.png" alt="Köfteli Bowl" loading="lazy">
+          </div>
+          <div class="menu-card-details">
+            <div>
+              <div class="menu-card-top">
+                <h3 class="menu-item-name">Köfteli Bowl</h3>
+                <span class="menu-item-price">480 TL</span>
+              </div>
+              <p class="menu-item-desc">Köfte, Basmati Pirinç, Avokado, Lutenitsa Sos, Süzme Yoğurt, Çeri Domates, Mor Soğan Turşusu, Salatalık, Ekşi Krema, Yeşillik Mix.</p>
+            </div>
+            <div class="menu-item-meta">
+              <span>670 kcal</span> • <span>Alerjen: 1, 3, 4</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Falafel Bowl -->
+        <article class="menu-card">
+          <div class="menu-card-thumb">
+            <img src="https://calantheqrmenu.com/_assets/media/652274b67352cba47c9eb47d366b5731.png" alt="Falafel Bowl" loading="lazy">
+          </div>
+          <div class="menu-card-details">
+            <div>
+              <div class="menu-card-top">
+                <h3 class="menu-item-name">Falafel Bowl</h3>
+                <span class="menu-item-price">410 TL</span>
+              </div>
+              <p class="menu-item-desc">Falafel, Kinoa, Tahin Sos, Avokado, Çeri Domates, Salatalık, Baby Turp, Yeşillik Mix ile servis edilir.</p>
+            </div>
+            <div class="menu-item-meta">
+              <span>600 kcal</span> • <span>Alerjen: 1, 11, 14</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Tavuklu Bowl -->
+        <article class="menu-card">
+          <div class="menu-card-thumb">
+            <img src="https://calantheqrmenu.com/_assets/media/05459780d541406ca6cd9fbf5a5061b3.png" alt="Tavuklu Bowl" loading="lazy">
+          </div>
+          <div class="menu-card-details">
+            <div>
+              <div class="menu-card-top">
+                <h3 class="menu-item-name">Tavuklu Bowl</h3>
+                <span class="menu-item-price">440 TL</span>
+              </div>
+              <p class="menu-item-desc">Izgara Tavuk, Avokado, Basmati Pirinç, Yeşillik Mix, Çeri Domates, Ekşi Krema, Lütenitsa, Meksika Fasulyesi ile servis edilir.</p>
+            </div>
+            <div class="menu-item-meta">
+              <span>610 kcal</span> • <span>Alerjen: 4, 8</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Sweet Chili Bowl -->
+        <article class="menu-card">
+          <div class="menu-card-thumb">
+            <img src="https://calantheqrmenu.com/_assets/media/d2c5127f817efd54f409bfcaabda374a.png" alt="Sweet Chili Bowl" loading="lazy">
+          </div>
+          <div class="menu-card-details">
+            <div>
+              <div class="menu-card-top">
+                <h3 class="menu-item-name">Sweet Chili Bowl</h3>
+                <span class="menu-item-price">450 TL</span>
+              </div>
+              <p class="menu-item-desc">Sweet Chili Soslu Tavuk, Basmati Pirinç, Yeşillik Mix, Izgara Brokoli, Havuç, Patates Bravas ile servis edilir.</p>
+            </div>
+            <div class="menu-item-meta">
+              <span>640 kcal</span> • <span>Alerjen: 1, 6, 8</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Pesto Soslu Tavuklu Makarna -->
+        <article class="menu-card">
+          <div class="menu-card-thumb">
+            <img src="https://calantheqrmenu.com/_assets/media/bb19dc55f858641a04de5199460b4ae7.png" alt="Pesto Soslu Tavuklu Makarna" loading="lazy">
+          </div>
+          <div class="menu-card-details">
+            <div>
+              <div class="menu-card-top">
+                <h3 class="menu-item-name">Pesto Soslu Tavuklu Makarna</h3>
+                <span class="menu-item-price">440 TL</span>
+              </div>
+              <p class="menu-item-desc">Pesto Sos, Özel Soslu Izgara Tavuk, Makarna, Pişmiş Domates ile servis edilir.</p>
+            </div>
+            <div class="menu-item-meta">
+              <span>600 kcal</span> • <span>Alerjen: 1, 3, 4, 11</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Izgara Şeftali Roka Salata -->
+        <article class="menu-card">
+          <div class="menu-card-thumb">
+            <img src="https://calantheqrmenu.com/_assets/media/444cbd6ae289ccc648a3f948b26c10f9.png" alt="Izgara Şeftali Roka Salata" loading="lazy">
+          </div>
+          <div class="menu-card-details">
+            <div>
+              <div class="menu-card-top">
+                <h3 class="menu-item-name">Izgara Şeftali Roka Salata</h3>
+                <span class="menu-item-price">390 TL</span>
+              </div>
+              <p class="menu-item-desc">Roka, Izgara Şeftali, Hellim Peyniri, Balsamik Sirke, Crispy Salatalık ve Kinoa Mix ile servis edilir.</p>
+            </div>
+            <div class="menu-item-meta">
+              <span>500 kcal</span> • <span>Alerjen: 4, 11</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Ciabata Sandviç -->
+        <article class="menu-card">
+          <div class="menu-card-thumb">
+            <img src="https://calantheqrmenu.com/_assets/media/34b821b6193685adac4296062cda32b4.png" alt="Ciabata Sandviç" loading="lazy">
+          </div>
+          <div class="menu-card-details">
+            <div>
+              <div class="menu-card-top">
+                <h3 class="menu-item-name">Ciabata Sandviç</h3>
+                <span class="menu-item-price">400 TL</span>
+              </div>
+              <p class="menu-item-desc">Kendi Mutfağımızdan Ciabata Ekmeği, Labne, Lütenitsa Sos, Füme Et, Balsamik Sirkeli Roka, Patates Bravas, Turşusu ve Calanthe Sos.</p>
+            </div>
+            <div class="menu-item-meta">
+              <span>700 kcal</span> • <span>Alerjen: 1, 3, 4, 6</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 3. TATLILAR -->
+    <section id="2" class="menu-category-section">
+      <div class="category-header">
+        <h2 class="category-title">Tatlılar</h2>
+        <span class="category-badge">Artisan Patisserie</span>
+        <p class="category-notice">Tatlılarımız günlük olarak hazırlanmakta olup, stok durumu gün içerisinde değişiklik gösterebilir.</p>
+      </div>
+
+      <div class="menu-grid">
+        <!-- Plato Feliz -->
+        <article class="menu-card">
+          <div class="menu-card-thumb">
+            <img src="./images/plato_feliz.webp" alt="Plato Feliz" loading="lazy">
+          </div>
+          <div class="menu-card-details">
+            <div>
+              <div class="menu-card-top">
+                <h3 class="menu-item-name">Plato Feliz</h3>
+                <span class="menu-item-price">400 TL</span>
+              </div>
+              <p class="menu-item-desc">Choux hamur, Calanthe Krema, Belçika Çikolatası, Muz ve Çilek.</p>
+            </div>
+            <div class="menu-item-meta">
+              <span>700 kcal</span> • <span>Alerjen: 1, 3, 4</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Antep Fıstıklı Tiramisu -->
+        <article class="menu-card">
+          <div class="menu-card-thumb">
+            <img src="./images/pistachio_tiramisu.webp" alt="Antep Fıstıklı Tiramisu" loading="lazy">
+          </div>
+          <div class="menu-card-details">
+            <div>
+              <div class="menu-card-top">
+                <h3 class="menu-item-name">Antep Fıstıklı Tiramisu</h3>
+                <span class="menu-item-price">360 TL</span>
+              </div>
+              <p class="menu-item-desc">Özel Calanthe tiramisu kreması, espresso savoiardi bisküvi ve bol Antep fıstığı.</p>
+            </div>
+            <div class="menu-item-meta">
+              <span>540 kcal</span> • <span>Alerjen: 1, 3, 4, 11</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Tahin Krokan -->
+        <article class="menu-card">
+          <div class="menu-card-thumb">
+            <img src="https://calantheqrmenu.com/_assets/media/dea93774089c240abc776b83962e1a22.png" alt="Tahin Krokan" loading="lazy">
+          </div>
+          <div class="menu-card-details">
+            <div>
+              <div class="menu-card-top">
+                <h3 class="menu-item-name">Tahin Krokan</h3>
+                <span class="menu-item-price">360 TL</span>
+              </div>
+              <p class="menu-item-desc">Özel tahin dolgusu ve çıtır karamel krokan taneleri.</p>
+            </div>
+            <div class="menu-item-meta">
+              <span>520 kcal</span> • <span>Alerjen: 1, 3, 4, 14</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Orman Meyveli Cookie -->
+        <article class="menu-card">
+          <div class="menu-card-thumb">
+            <img src="https://calantheqrmenu.com/_assets/media/f45f400f3cb4056679e02ccaef3010c5.png" alt="Orman Meyveli Cookie" loading="lazy">
+          </div>
+          <div class="menu-card-details">
+            <div>
+              <div class="menu-card-top">
+                <h3 class="menu-item-name">Orman Meyveli Cookie</h3>
+                <span class="menu-item-price">300 TL</span>
+              </div>
+              <p class="menu-item-desc">Orman Meyveli, Çilekli ve Beyaz Çikolatalı Cookie, dondurma ile servis edilir.</p>
+            </div>
+            <div class="menu-item-meta">
+              <span>620 kcal</span> • <span>Alerjen: 1, 3, 4</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Vişneli Beyaz Çikolatalı Brownie -->
+        <article class="menu-card">
+          <div class="menu-card-thumb">
+            <img src="https://calantheqrmenu.com/_assets/media/c9254d935b3d2328f97b9e5987b353f3.png" alt="Vişneli Beyaz Çikolatalı Brownie" loading="lazy">
+          </div>
+          <div class="menu-card-details">
+            <div>
+              <div class="menu-card-top">
+                <h3 class="menu-item-name">Vişneli Beyaz Çikolatalı Brownie</h3>
+                <span class="menu-item-price">330 TL</span>
+              </div>
+              <p class="menu-item-desc">Nemli yoğun çikolatalı brownie, ekşi vişne taneleri ve beyaz çikolata parçaları.</p>
+            </div>
+            <div class="menu-item-meta">
+              <span>Alerjen: 1, 3, 4</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Tiramisu -->
+        <article class="menu-card">
+          <div class="menu-card-thumb">
+            <img src="https://calantheqrmenu.com/_assets/media/f33b265684d6c132d4eade0547c8cd20.png" alt="Tiramisu" loading="lazy">
+          </div>
+          <div class="menu-card-details">
+            <div>
+              <div class="menu-card-top">
+                <h3 class="menu-item-name">Klasik Tiramisu</h3>
+                <span class="menu-item-price">290 TL</span>
+              </div>
+              <p class="menu-item-desc">Geleneksel İtalyan tarifi ile taze espresso ve mascarpone kreması.</p>
+            </div>
+            <div class="menu-item-meta">
+              <span>420 kcal</span> • <span>Alerjen: 1, 3, 4</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Cheesecake -->
+        <article class="menu-card">
+          <div class="menu-card-thumb">
+            <img src="https://calantheqrmenu.com/_assets/media/bc4e60e3799facd4ebf6fce0de23d983.png" alt="Cheesecake" loading="lazy">
+          </div>
+          <div class="menu-card-details">
+            <div>
+              <div class="menu-card-top">
+                <h3 class="menu-item-name">Cheesecake</h3>
+                <span class="menu-item-price">330 TL</span>
+              </div>
+              <p class="menu-item-desc">Tercihe göre Süt Reçelli, Belçika Çikolatalı ya da Orman Meyveli olarak servis edilir.</p>
+            </div>
+            <div class="menu-item-meta">
+              <span>500 kcal</span> • <span>Alerjen: 1, 3, 4</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Fıstıklı Blondie -->
+        <article class="menu-card">
+          <div class="menu-card-thumb">
+            <img src="https://calantheqrmenu.com/_assets/media/a806394a85b925a51f4c52ca0b9c647e.png" alt="Fıstıklı Blondie" loading="lazy">
+          </div>
+          <div class="menu-card-details">
+            <div>
+              <div class="menu-card-top">
+                <h3 class="menu-item-name">Fıstıklı Blondie</h3>
+                <span class="menu-item-price">400 TL</span>
+              </div>
+              <p class="menu-item-desc">Beyaz çikolatalı Antep fıstıklı blondie keki, dondurma ile servis edilir.</p>
+            </div>
+            <div class="menu-item-meta">
+              <span>600 kcal</span> • <span>Alerjen: 1, 3, 4, 11</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Banana Bread -->
+        <article class="menu-card">
+          <div class="menu-card-thumb">
+            <img src="https://calantheqrmenu.com/_assets/media/ccf40f4f7ade015435e17d4f2b72f09f.png" alt="Banana Bread" loading="lazy">
+          </div>
+          <div class="menu-card-details">
+            <div>
+              <div class="menu-card-top">
+                <h3 class="menu-item-name">Banana Bread</h3>
+                <span class="menu-item-price">290 TL</span>
+              </div>
+              <p class="menu-item-desc">Mascarpone Peyniri ve Karamelize muz ile servis edilir.</p>
+            </div>
+            <div class="menu-item-meta">
+              <span>520 kcal</span> • <span>Alerjen: 1, 3, 4, 11</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Cookie Feliz -->
+        <article class="menu-card">
+          <div class="menu-card-thumb">
+            <img src="https://calantheqrmenu.com/_assets/media/62d29799bb30c8b3e6adefad869ccb0b.png" alt="Cookie Feliz" loading="lazy">
+          </div>
+          <div class="menu-card-details">
+            <div>
+              <div class="menu-card-top">
+                <h3 class="menu-item-name">Cookie Feliz</h3>
+                <span class="menu-item-price">400 TL</span>
+              </div>
+              <p class="menu-item-desc">Cookie, Dondurma, Calanthe Krema, Belçika Çikolatası, Beyaz Çikolata, Krep Kırığı.</p>
+            </div>
+            <div class="menu-item-meta">
+              <span>750 kcal</span> • <span>Alerjen: 1, 3, 4</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 4. İÇECEKLER -->
+    <section id="3" class="menu-category-section">
+      <div class="category-header">
+        <h2 class="category-title">İçecekler</h2>
+        <span class="category-badge">Kahve, Çay & Soğuk Lezzetler</span>
+      </div>
+
+      <div class="drinks-subgrid">
+        <!-- Espresso Bar -->
+        <div class="drink-column">
+          <h3 class="drink-column-title">☕ Espresso Bar</h3>
+          
+          <div class="drink-list-item">
+            <div class="drink-item-info"><span class="drink-name">Espresso</span></div>
+            <span class="drink-price">130 TL</span>
+          </div>
+          <div class="drink-list-item">
+            <div class="drink-item-info"><span class="drink-name">Espresso Macchiato</span></div>
+            <span class="drink-price">130 TL</span>
+          </div>
+          <div class="drink-list-item">
+            <div class="drink-item-info"><span class="drink-name">Americano</span></div>
+            <span class="drink-price">170 TL</span>
+          </div>
+          <div class="drink-list-item">
+            <div class="drink-item-info"><span class="drink-name">Cortado</span></div>
+            <span class="drink-price">170 TL</span>
+          </div>
+          <div class="drink-list-item">
+            <div class="drink-item-info"><span class="drink-name">Flat White</span></div>
+            <span class="drink-price">200 TL</span>
+          </div>
+          <div class="drink-list-item">
+            <div class="drink-item-info"><span class="drink-name">Cappuccino</span></div>
+            <span class="drink-price">200 TL</span>
+          </div>
+          <div class="drink-list-item">
+            <div class="drink-item-info">
+              <span class="drink-name">Latte</span>
+              <p class="drink-sub">Karamel, Salted Karamel, Mocha, White Mocha, Süt Reçeli, Biscoff (+30 TL)</p>
+            </div>
+            <span class="drink-price">200 TL</span>
+          </div>
+          <div class="drink-list-item">
+            <div class="drink-item-info">
+              <span class="drink-name">Cafe Miel</span>
+              <p class="drink-sub">Bal, Tarçın, Espresso, Süt</p>
+            </div>
+            <span class="drink-price">240 TL</span>
+          </div>
+          <div class="drink-list-item">
+            <div class="drink-item-info">
+              <span class="drink-name">Orange White Mocha</span>
+              <p class="drink-sub">Portakal, Beyaz Çikolata, Tarçın</p>
+            </div>
+            <span class="drink-price">240 TL</span>
+          </div>
+          <div class="drink-list-item">
+            <div class="drink-item-info">
+              <span class="drink-name">Red Eye</span>
+              <p class="drink-sub">Tek Shot Espresso, Filtre Kahve</p>
+            </div>
+            <span class="drink-price">210 TL</span>
+          </div>
+        </div>
+
+        <!-- Soğuk Kahveler -->
+        <div class="drink-column">
+          <h3 class="drink-column-title">🧊 Soğuk Kahveler</h3>
+          
+          <div class="drink-list-item">
+            <div class="drink-item-info"><span class="drink-name">Ice Americano</span></div>
+            <span class="drink-price">180 TL</span>
+          </div>
+          <div class="drink-list-item">
+            <div class="drink-item-info"><span class="drink-name">Ice Filtre</span></div>
+            <span class="drink-price">180 TL</span>
+          </div>
+          <div class="drink-list-item">
+            <div class="drink-item-info"><span class="drink-name">Cold Brew</span></div>
+            <span class="drink-price">210 TL</span>
+          </div>
+          <div class="drink-list-item">
+            <div class="drink-item-info">
+              <span class="drink-name">Ice Latte</span>
+              <p class="drink-sub">Aroma Seçenekleri (+30 TL)</p>
+            </div>
+            <span class="drink-price">220 TL</span>
+          </div>
+          <div class="drink-list-item">
+            <div class="drink-item-info"><span class="drink-name">Ice Flat White</span></div>
+            <span class="drink-price">220 TL</span>
+          </div>
+          <div class="drink-list-item">
+            <div class="drink-item-info">
+              <span class="drink-name">Affogato</span>
+              <p class="drink-sub">Vanilyalı Dondurma, Espresso</p>
+            </div>
+            <span class="drink-price">250 TL</span>
+          </div>
+          <div class="drink-list-item">
+            <div class="drink-item-info">
+              <span class="drink-name">Orange Espresso</span>
+              <p class="drink-sub">Taze Portakal Suyu, Double Shot Espresso</p>
+            </div>
+            <span class="drink-price">250 TL</span>
+          </div>
+          <div class="drink-list-item">
+            <div class="drink-item-info">
+              <span class="drink-name">Espresso Vanilla Milkshake</span>
+            </div>
+            <span class="drink-price">250 TL</span>
+          </div>
+        </div>
+
+        <!-- Matcha, Mocktails & Soft Drinks -->
+        <div class="drink-column">
+          <h3 class="drink-column-title">🍵 Matcha & Mocktails</h3>
+          
+          <div class="drink-list-item">
+            <div class="drink-item-info">
+              <span class="drink-name">Matcha Latte / Ice Matcha</span>
+              <p class="drink-sub">Vanilya / Coconut Farkı (+20 TL)</p>
+            </div>
+            <span class="drink-price">225 TL</span>
+          </div>
+          <div class="drink-list-item">
+            <div class="drink-item-info">
+              <span class="drink-name">Strawberry Matcha</span>
+              <p class="drink-sub">Strawberry Cordial, Süt, Matcha</p>
+            </div>
+            <span class="drink-price">235 TL</span>
+          </div>
+          <div class="drink-list-item">
+            <div class="drink-item-info">
+              <span class="drink-name">Basil Matcha</span>
+              <p class="drink-sub">Taze Fesleğen, Bal, Süt, Limon Suyu</p>
+            </div>
+            <span class="drink-price">260 TL</span>
+          </div>
+          <div class="drink-list-item">
+            <div class="drink-item-info">
+              <span class="drink-name">Mojito Mocktail</span>
+            </div>
+            <span class="drink-price">250 TL</span>
+          </div>
+          <div class="drink-list-item">
+            <div class="drink-item-info">
+              <span class="drink-name">Cool Lime</span>
+            </div>
+            <span class="drink-price">250 TL</span>
+          </div>
+          <div class="drink-list-item">
+            <div class="drink-item-info">
+              <span class="drink-name">Hibiskus Cloud</span>
+              <p class="drink-sub">Coconut Suyu, Hibiskus Krema</p>
+            </div>
+            <span class="drink-price">250 TL</span>
+          </div>
+          <div class="drink-list-item">
+            <div class="drink-item-info">
+              <span class="drink-name">Ev Yapımı Limonata (Sade / Naneli / Fesleğenli)</span>
+            </div>
+            <span class="drink-price">210 - 230 TL</span>
+          </div>
+          <div class="drink-list-item">
+            <div class="drink-item-info"><span class="drink-name">Taze Sıkma Portakal Suyu</span></div>
+            <span class="drink-price">250 TL</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Deneyim Barı (V60 & Cold Drip) -->
+      <div id="PBSTk0gqy4Xtbx4m" class="experience-bar-box">
+        <h3 class="exp-title">Deneyim Barı • Nitelikli Çekirdekler</h3>
+        <p style="text-align: center; color: #c5a880; font-size: 0.88rem; margin-bottom: 22px;">
+          V60 Demleme (210 TL) veya Japanese Cold Drip (210 TL) yöntemleriyle deneyimleyebilirsiniz.
+        </p>
+
+        <div class="exp-grid">
+          <div class="exp-card">
+            <div class="exp-card-header">
+              <span class="exp-bean-name">Tropic Punch</span>
+              <span class="exp-bean-price">210 TL</span>
+            </div>
+            <p class="exp-notes"><strong>Köken:</strong> Colombia<br><strong>Tadım Notaları:</strong> Erik, İncir, Kakao Parçacıkları</p>
+          </div>
+
+          <div class="exp-card">
+            <div class="exp-card-header">
+              <span class="exp-bean-name">Alma Negra</span>
+              <span class="exp-bean-price">210 TL</span>
+            </div>
+            <p class="exp-notes"><strong>Köken:</strong> Costa Rica<br><strong>Tadım Notaları:</strong> Kuru Üzüm, Çekirdekli Meyveler, Beyaz Çikolata</p>
+          </div>
+
+          <div class="exp-card">
+            <div class="exp-card-header">
+              <span class="exp-bean-name">Aricha Adorsi</span>
+              <span class="exp-bean-price">210 TL</span>
+            </div>
+            <p class="exp-notes"><strong>Köken:</strong> Ethiopia<br><strong>Tadım Notaları:</strong> Lavanta, Yasemin, Portakal Çiçeği</p>
+          </div>
+
+          <div class="exp-card">
+            <div class="exp-card-header">
+              <span class="exp-bean-name">Carmo Sudan Rume</span>
+              <span class="exp-bean-price">210 TL</span>
+            </div>
+            <p class="exp-notes"><strong>Köken:</strong> Brasil<br><strong>Tadım Notaları:</strong> Sarı Meyveler, Liçi</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-logo">CALANTHE COFFEE & MORE</div>
+    <p class="footer-text">
+      Nitelikli kahve, taze lezzetler ve artisan patisserie ürünleriyle her anınızda yanınızdayız.
+    </p>
+    <p style="font-size: 0.74rem; color: #756c64;">
+      © 2026 Calanthe. Tüm Hakları Saklıdır.
+    </p>
+  </footer>
+
+  <!-- =========================================
+       COVERFLOW CAROUSEL JAVASCRIPT LOGIC
+       ========================================= -->
+  <script>
+    const dishes = [
+      {
+        tag: "#SignatureBreakfast",
+        titleLine1: "EGG BENEDICT",
+        titleLine2: "– HOLLANDEZ & AVOKADO",
+        desc: "Poşe yumurta, füme antrikot, hollandez sos, ekşi mayalı ekmek ve patates bravas",
+        img: "./images/egg_benedict.webp",
+        ctaText: "Menüyü İncele",
+        ctaUrl: "#0"
+      },
+      {
+        tag: "#ChefSpecial",
+        titleLine1: "KATSU-SANDO",
+        titleLine2: "– ÇITIR TAVUK BRİOCHE",
+        desc: "Panelenmiş çıtır tavuk, brioche tost ekmeği, patates bravas, coleslaw ve tenkatsu sos",
+        img: "./images/katsu_sando.webp",
+        ctaText: "Menüyü İncele",
+        ctaUrl: "#1"
+      },
+      {
+        tag: "#HealthyChoice",
+        titleLine1: "POKE BOWL",
+        titleLine2: "– IZGARA SOMON",
+        desc: "Izgara somon, taze avokado, kinoa, edamame, baby turp, susam ve yeşillik mix",
+        img: "./images/salmon_poke_bowl.webp",
+        ctaText: "Menüyü İncele",
+        ctaUrl: "#1"
+      },
+      {
+        tag: "#SweetSignature",
+        titleLine1: "PLATO FELIZ",
+        titleLine2: "– BELÇİKA ÇİKOLATASI",
+        desc: "Özel choux hamuru, Calanthe krema, Belçika çikolatası, taze muz ve çilek",
+        img: "./images/plato_feliz.webp",
+        ctaText: "Menüyü İncele",
+        ctaUrl: "#2"
+      },
+      {
+        tag: "#ArtisanDessert",
+        titleLine1: "FISTIKLI TİRAMİSU",
+        titleLine2: "– ANTEP FISTIĞI DOKUNUŞU",
+        desc: "Espresso ile demlenmiş savoiardi, mascarpone tiramisu kreması ve yoğun Antep fıstığı",
+        img: "./images/pistachio_tiramisu.webp",
+        ctaText: "Menüyü İncele",
+        ctaUrl: "#2"
+      }
+    ];
+
+    let currentIndex = 0;
+    const total = dishes.length;
+    let autoplayInterval = null;
+    let isHovered = false;
+
+    const stage = document.getElementById('coverflow-stage');
+    const dotsContainer = document.getElementById('coverflow-dots');
+    const ambienceImg = document.getElementById('carousel-ambience-img');
+
+    // Build DOM elements for each card
+    dishes.forEach((item, idx) => {
+      const card = document.createElement('div');
+      card.className = 'coverflow-card';
+      card.id = 'coverflow-card-' + idx;
+      card.innerHTML = `
+        <img class="coverflow-card-img" src="${item.img}" alt="${item.titleLine1}">
+        <div class="coverflow-card-vignette"></div>
+        <div class="coverflow-card-content" id="card-content-${idx}">
+          <div class="coverflow-card-tag"><span>${item.tag}</span></div>
+          <div class="coverflow-card-body">
+            <h2 class="coverflow-card-title1">${item.titleLine1}</h2>
+            ${item.titleLine2 ? '<span class="coverflow-card-title2">' + item.titleLine2 + '</span>' : ''}
+            <div class="coverflow-card-divider"></div>
+            <p class="coverflow-card-desc">${item.desc}</p>
+            <a href="${item.ctaUrl}" class="coverflow-card-btn">
+              <span>${item.ctaText}</span>
+              <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      `;
+
+      card.addEventListener('click', () => {
+        if (currentIndex !== idx) {
+          goToSlide(idx);
+        }
+      });
+
+      stage.appendChild(card);
+
+      // Create indicator dot
+      const dot = document.createElement('button');
+      dot.className = 'coverflow-dot' + (idx === 0 ? ' active' : '');
+      dot.setAttribute('aria-label', (idx + 1) + '. tabağa git');
+      dot.addEventListener('click', () => goToSlide(idx));
+      dotsContainer.appendChild(dot);
+    });
+
+    function updateCarousel() {
+      // Ambience background
+      ambienceImg.src = dishes[currentIndex].img;
+
+      // Responsive calculations
+      const winW = window.innerWidth;
+      const isMobile = winW < 640;
+      const isTablet = winW >= 640 && winW < 1024;
+
+      let xOffset1 = 285;
+      let xOffset2 = 510;
+      let scale1 = 0.84;
+      let scale2 = 0.68;
+      let rot1 = 24;
+      let rot2 = 38;
+
+      if (isMobile) {
+        xOffset1 = Math.min(winW * 0.44, 150);
+        xOffset2 = xOffset1 * 1.5;
+        scale1 = 0.82;
+        scale2 = 0.65;
+        rot1 = 18;
+        rot2 = 28;
+      } else if (isTablet) {
+        xOffset1 = Math.min(winW * 0.32, 220);
+        xOffset2 = xOffset1 * 1.8;
+        scale1 = 0.83;
+        scale2 = 0.66;
+        rot1 = 22;
+        rot2 = 34;
+      }
+
+      // Update card transforms
+      dishes.forEach((item, idx) => {
+        const card = document.getElementById('coverflow-card-' + idx);
+        const content = document.getElementById('card-content-' + idx);
+        const offset = (idx - currentIndex + total) % total;
+
+        let transform = "translateX(0px) scale(0.4) rotateY(0deg)";
+        let opacity = 0;
+        let zIndex = 0;
+        let filter = "brightness(0.4) blur(2px)";
+        let isCenter = false;
+
+        if (offset === 0) {
+          isCenter = true;
+          transform = "translateX(0px) scale(1) rotateY(0deg)";
+          opacity = 1;
+          zIndex = 30;
+          filter = "brightness(1)";
+        } else if (offset === 1) {
+          transform = "translateX(" + xOffset1 + "px) scale(" + scale1 + ") rotateY(-" + rot1 + "deg)";
+          opacity = isMobile ? 0.55 : 0.65;
+          zIndex = 20;
+          filter = "brightness(0.75)";
+        } else if (offset === 2) {
+          transform = "translateX(" + xOffset2 + "px) scale(" + scale2 + ") rotateY(-" + rot2 + "deg)";
+          opacity = isMobile ? 0 : 0.38;
+          zIndex = 10;
+          filter = "brightness(0.55) blur(1px)";
+        } else if (offset === total - 1) {
+          transform = "translateX(-" + xOffset1 + "px) scale(" + scale1 + ") rotateY(" + rot1 + "deg)";
+          opacity = isMobile ? 0.55 : 0.65;
+          zIndex = 20;
+          filter = "brightness(0.75)";
+        } else if (offset === total - 2) {
+          transform = "translateX(-" + xOffset2 + "px) scale(" + scale2 + ") rotateY(" + rot2 + "deg)";
+          opacity = isMobile ? 0 : 0.38;
+          zIndex = 10;
+          filter = "brightness(0.55) blur(1px)";
+        }
+
+        card.style.transform = transform;
+        card.style.opacity = opacity;
+        card.style.zIndex = zIndex;
+        card.style.filter = filter;
+        card.style.cursor = isCenter ? "default" : "pointer";
+        card.style.boxShadow = isCenter
+          ? "0 20px 50px rgba(0,0,0,0.9), 0 0 30px rgba(197,168,128,0.25)"
+          : "0 10px 25px rgba(0,0,0,0.5)";
+
+        if (isCenter) {
+          content.style.opacity = "1";
+          content.style.transform = "translateY(0px)";
+          content.style.pointerEvents = "auto";
+        } else {
+          content.style.opacity = "0";
+          content.style.transform = "translateY(16px)";
+          content.style.pointerEvents = "none";
+        }
+      });
+
+      // Update dots
+      const dots = document.querySelectorAll('.coverflow-dot');
+      dots.forEach((dot, idx) => {
+        dot.className = 'coverflow-dot' + (idx === currentIndex ? ' active' : '');
+      });
+    }
+
+    function nextSlide() {
+      currentIndex = (currentIndex + 1) % total;
+      updateCarousel();
+    }
+
+    function prevSlide() {
+      currentIndex = (currentIndex - 1 + total) % total;
+      updateCarousel();
+    }
+
+    function goToSlide(idx) {
+      currentIndex = idx % total;
+      updateCarousel();
+    }
+
+    function startAutoplay() {
+      if (autoplayInterval) clearInterval(autoplayInterval);
+      autoplayInterval = setInterval(() => {
+        if (!isHovered) nextSlide();
+      }, 5000);
+    }
+
+    function pauseCarousel() {
+      isHovered = true;
+    }
+
+    function resumeCarousel() {
+      isHovered = false;
+    }
+
+    // Keyboard navigation
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') prevSlide();
+      if (e.key === 'ArrowRight') nextSlide();
+    });
+
+    // Touch Swipe Support
+    let touchStartX = 0;
+    stage.addEventListener('touchstart', (e) => {
+      touchStartX = e.touches[0].clientX;
+    }, { passive: true });
+
+    stage.addEventListener('touchend', (e) => {
+      const diff = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(diff) > 40) {
+        if (diff < 0) nextSlide();
+        else prevSlide();
+      }
+    }, { passive: true });
+
+    // Window resize handler for fluid responsiveness
+    let resizeTimer = null;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        updateCarousel();
+      }, 80);
+    });
+
+    // Initial render & autoplay
+    updateCarousel();
+    startAutoplay();
+  </script>
+</body>
+</html>
